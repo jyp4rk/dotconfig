@@ -1,43 +1,100 @@
-set hlsearch " 검색어 하이라이팅
-set mouse=a
-set nu " 줄번호
-set autoindent " 자동 들여쓰기
-set scrolloff=2
-set wildmode=longest,list
-set ts=4 "tag select
-set sts=4 "st select
-set sw=1 " 스크롤바 너비
-set autowrite " 다른 파일로 넘어갈 때 자동 저장
-set autoread " 작업 중인 파일 외부에서 변경됬을 경우 자동으로 불러옴
-set cindent " C언어 자동 들여쓰기
-set bs=eol,start,indent
-set history=256
-set laststatus=2 " 상태바 표시 항상
-"set paste " 붙여넣기 계단현상 없애기
-set shiftwidth=2 " 자동 들여쓰기 너비 설정
-set expandtab
-set et
-set showmatch " 일치하는 괄호 하이라이팅
-set smartcase " 검색시 대소문자 구별
-set smarttab
+set nocompatible              " be iMproved, required
+filetype off                  " required
+
+
+" set the runtime path to include Vundle and initialize
+set rtp+=~/.vim/bundle/Vundle.vim
+
+call vundle#begin()
+Plugin 'VundleVim/Vundle.vim'
+Plugin 'majutsushi/tagbar'
+Plugin 'blueyed/vim-diminactive'
+Plugin 'tpope/vim-fugitive' "git command (Gdiff)
+Plugin 'git://git.wincent.com/command-t.git'
+Plugin 'rstacruz/sparkup', {'rtp': 'vim/'}
+Plugin 'vim-airline/vim-airline'
+Plugin 'vim-airline/vim-airline-themes'
+Plugin 'scrooloose/nerdtree'
+Plugin 'airblade/vim-gitgutter'
+Plugin 'scrooloose/syntastic'
+Plugin 'ctrlpvim/ctrlp.vim'
+Plugin 'nanotech/jellybeans.vim'
+call vundle#end()            " required
+"filetype plugin indent on    " required
+
+"short cut with Leaderkey (\)
+map <Leader>nt <ESC>:NERDTree<CR>
+map <Leader>tb <ESC>:Tagbar<CR>
+
+" for blueyed/vim-diminactive
+let g:diminactive_enable_focus = 1
+" for vim-airline
+let g:airline#extensions#tabline#enabled = 1 " turn on buffer list
+let g:airline_theme='hybrid'
+set laststatus=2 " turn on bottom bar
+let mapleader = ","
+nnoremap <leader>q :bp<CR>
+nnoremap <leader>w :bn<CR>
+
+
+let NERDTreeShowHidden=1
+" let NERDTreeQuitOnOpen=1
+let g:ctrlp_custom_ignore = {
+  \ 'dir':  '\.git$\|vendor$',
+    \ 'file': '\v\.(exe|so|dll)$'
+\ }
+color jellybeans
+" Tag List 환경설정
+filetype on                                 "vim filetype on
+"Source Explorer 환경설정
+nmap <F8> :SrcExplToggle<CR>                "F8 Key = SrcExpl Toggling
+nmap <C-H> <C-W>h                           "왼쪽 창으로 이동
+nmap <C-J> <C-W>j                           "아래 창으로 이동
+nmap <C-K> <C-W>k                           "윗 창으로 이동
+nmap <C-L> <C-W>l                           "오른쪽 창으로 이동
+" 세부 정보 출력
+set nu
+set title
+set showmatch
+set ruler
+" 구문 강조 사용
+if has("syntax")
+ syntax on
+endif
+" 색깔 설정
+set t_Co=256
+" 들여쓰기 설정
+set autoindent
 set smartindent
-set softtabstop=4
-set tabstop=4
-set ruler " 현재 커서 위치 표시
-set incsearch
+set tabstop=2
+set shiftwidth=2
+set softtabstop=2
+set smarttab
+set expandtab
+" 붙여넣기 설정
+set paste
+set mouse-=a
+" 한글 입력 설정
+set encoding=utf-8
+set termencoding=utf-8
+" 커서가 있는 줄을 강조함
+set cursorline
+" 상태바 표시를 항상한다
+set laststatus=2
 set statusline=\ %<%l:%v\ [%P]%=%a\ %h%m%r\ %F\
+" 검색 설정
+set ignorecase
 " 마지막으로 수정된 곳에 커서를 위치함
 au BufReadPost *
 \ if line("'\"") > 0 && line("'\"") <= line("$") |
 \ exe "norm g`\"" |
 \ endif
-" 파일 인코딩을 한국어로
-if $LANG[0]=='k' && $LANG[1]=='o'
-set fileencoding=korea
-endif
-" 구문 강조 사용
-if has("syntax")
- syntax on
-endif
-" 컬러 스킴 사용
-colorscheme jellybeans
+
+" Markdown 문법 설정 (Git 에서 사용)
+augroup markdown
+    " remove previous autocmds
+    autocmd!
+    " set every new or read *.md buffer to use the markdown filetype
+    autocmd BufRead,BufNew *.md setf markdown
+augroup END
+
