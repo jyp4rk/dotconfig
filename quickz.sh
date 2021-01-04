@@ -24,7 +24,9 @@ else
 fi
 
 cp -f .zshrc ~/
-
+cp -f .vimrc ~/
+git clone https://github.com/VundleVim/Vundle.vim.git ~/.vim/bundle/Vundle.vim
+vim --cmd PluginInstall
 
 mkdir -p ~/.quickzsh       # external plugins, things, will be instlled in here
 
