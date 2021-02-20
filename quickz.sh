@@ -24,7 +24,8 @@ else
 fi
 
 cp -f .zshrc ~/
-
+cp -f .vimrc ~/
+git clone https://github.com/VundleVim/Vundle.vim.git ~/.vim/bundle/Vundle.vim
 
 mkdir -p ~/.quickzsh       # external plugins, things, will be instlled in here
 
@@ -131,12 +132,5 @@ else
 fi
 
 
-# source ~/.zshrc
-echo -e "\nSudo access is needed to change default shell\n"
-
-if chsh -s $(which zsh) && /bin/zsh -i -c upgrade_oh_my_zsh; then
-    echo -e "Installation Successful, exit terminal and enter a new session"
-else
-    echo -e "Something is wrong"
-fi
+source ~/.zshrc
 exit
