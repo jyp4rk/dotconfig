@@ -224,6 +224,6 @@ corona() {
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
 export PATH=/usr/local/cuda/bin:/usr/local/cuda/include:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/snap/bin:$PATH
-export CUDA_HOME=/usr/local/cuda-11.0:$PATH
-export CUDA_INC_DIR=/usr/local/cuda-11.0/include:$PATH
-export LD_LIBRARY_PATH=/usr/local/lib:/usr/local/cuda-11.0/lib64:/usr/local/cuda/extras/CUPTI:$PATH
+export CUDA_HOME=/usr/local/cuda:$PATH
+export CUDA_INC_DIR=/usr/local/cuda/include:$PATH
+export LD_LIBRARY_PATH=/usr/local/lib:/usr/local/cuda/lib64:/usr/local/cuda/extras/CUPTI:$PATH
