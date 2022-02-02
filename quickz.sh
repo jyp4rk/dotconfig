@@ -131,6 +131,6 @@ else
     echo -e "\nNot copying bash_history to zsh_history, as --cp-hist or -c is not supplied\n"
 fi
 
-
+vim +PluginInstall +qall
 source ~/.zshrc
 exit
