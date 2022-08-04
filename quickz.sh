@@ -20,7 +20,7 @@ echo -e "Installing oh-my-zsh\n"
 if [ -d ~/.oh-my-zsh ]; then
     echo -e "oh-my-zsh is already installed\n"
 else
-    git clone --depth=1 git://github.com/robbyrussell/oh-my-zsh.git ~/.oh-my-zsh
+	git clone --depth=1 https://github.com/ohmyzsh/ohmyzsh.git ~/.oh-my-zsh
 fi
 
 cp -f .zshrc ~/
